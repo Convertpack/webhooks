@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
     $raw_payload = file_get_contents('php://input');
     $convertpack_data = json_decode($raw_payload, true);
-    //$convertpack_data = $json_data['data'];
 
     if (is_array($convertpack_data)) :
 
