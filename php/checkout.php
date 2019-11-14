@@ -261,6 +261,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         $transaction_origin_checkout_style = $convertpack_data['checkout']['style'];
 
         /**
+         * Tracking codes
+         *
+         * Only available if there is at least one tracking
+         * code added to the transaction
+         */
+        // Array of tracking codes
+        $tracking_codes = $convertpack_data['order_tracking'];
+
+        // Loop to check all tracking codes on this transaction
+        // Just an example. Change to fit your system.
+        $tracking_codes_keys = array_keys($tracking_codes);
+        $tracking_codes_count = count($tracking_codes_keys);
+
+        for ($i = 0; $i < $tracking_codes_count; $i++) {
+            $tracking_code = $tracking_codes[$tracking_codes_keys[$i]];
+
+            // Courier (shipping company)
+            // ie. USA: fedex
+            // ie. Brasil: correios
+            $tracking_code_courier = $tracking_code['courier'];
+
+            // Tracking code
+            // ie. LO111111111CN
+            $tracking_code = $tracking_code['tracking_code'];
+        }
+
+        /**
          * Print success
          */
         $success = [
