@@ -265,26 +265,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
          * Only available if there is at least one tracking
          * code added to the transaction
          */
-        // Array of tracking codes
-        $tracking_codes = $convertpack_data['order_tracking'];
+        if ($webhook_event === 'tracking_code_added') :
+            // Array of tracking codes
+            $tracking_codes = $convertpack_data['order_tracking'];
 
-        // Loop to check all tracking codes on this transaction
-        // Just an example. Change to fit your system.
-        $tracking_codes_keys = array_keys($tracking_codes);
-        $tracking_codes_count = count($tracking_codes_keys);
+            // Loop to check all tracking codes on this transaction
+            // Just an example. Change to fit your system.
+            $tracking_codes_keys = array_keys($tracking_codes);
+            $tracking_codes_count = count($tracking_codes_keys);
 
-        for ($i = 0; $i < $tracking_codes_count; $i++) {
-            $tracking_code = $tracking_codes[$tracking_codes_keys[$i]];
+            for ($i = 0; $i < $tracking_codes_count; $i++) {
+                $tracking_code = $tracking_codes[$tracking_codes_keys[$i]];
 
-            // Courier (shipping company)
-            // ie. USA: fedex
-            // ie. Brasil: correios
-            $tracking_code_courier = $tracking_code['courier'];
+                // Courier (shipping company)
+                // ie. USA: fedex
+                // ie. Brasil: correios
+                $tracking_code_courier = $tracking_code['courier'];
 
-            // Tracking code
-            // ie. LO111111111CN
-            $tracking_code = $tracking_code['tracking_code'];
-        }
+                // Tracking code
+                // ie. LO111111111CN
+                $tracking_code = $tracking_code['tracking_code'];
+            }
+        endif;
+
+        /**
+         * HTTP success
+         */
+        http_response_code(200);
 
         /**
          * Print success
@@ -299,6 +306,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
     else :
 
         /**
+         * HTTP error
+         */
+        http_response_code(500);
+
+        /**
          * Print error
          */
         $invalid_payload = [
@@ -310,6 +322,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
     endif;
 else :
+
+    /**
+     * HTTP error
+     */
+    http_response_code(500);
 
     /**
      * Print error
