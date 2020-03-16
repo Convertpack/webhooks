@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         $customer_email = $convertpack_data['customer']['email'];
 
         // Phone without DDI (International phone code), only numbers
-        // ie. USA: (541) 754-3010 => 5417543010
+        // ie. USA: (541) 754-3010 => 7543010
         // ie. Brazil: (11) 9-9999-1111 => 11999991111
         $customer_phone = $convertpack_data['customer']['phone']['number'];
 
@@ -215,6 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         /**
          * Total
          */
+        // Discount for selected gateway
         // Only available if you offer discount for this gateway
         $gateway_discount_amount = $convertpack_data['transaction']['gateway_discount'];
 
@@ -229,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         $boleto_url = $convertpack_data['boleto']['url'];
 
         // Boleto barcode
-        $boleto_url = $convertpack_data['boleto']['barcode'];
+        $boleto_barcode = $convertpack_data['boleto']['barcode'];
 
         /**
          * Gateway response
