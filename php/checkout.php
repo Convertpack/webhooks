@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
         // Transaction status
         // ie. rejected
-        $transaction_method = $convertpack_data['transaction']['status'];
+        $transaction_status = $convertpack_data['transaction']['status'];
 
         // Transaction currency
         // ie. USA: USD
