@@ -23,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         // ie. transaction_rejected
         $webhook_event = $convertpack_data['event'];
 
-        // When the webhook was triggered
-        // ie. 2019-11-14 11:58:16
+        // When the webhook was triggered (ISO 8601)
+        // ie. 2020-12-20T10:05:10-03:00
+        // Do not use as reference to transaction latest update time!
         $webhook_triggered_at = $convertpack_data['triggered_at'];
 
         /**
@@ -115,9 +116,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         /**
          * Transaction data
          */
-        // Transaction placed time
-        // ie. 2019-11-14 11:58:13 (YYYY-MM-DD HH:MM:SS)
+        // Transaction creation time (ISO 8601)
+        // ie. 2020-12-20T10:05:10-03:00
         $transaction_created_at = $convertpack_data['transaction']['created_at'];
+
+        // Transaction latest update time (ISO 8601)
+        // ie. 2020-12-20T10:05:15-03:00
+        $transaction_updated_at = $convertpack_data['transaction']['updated_at'];
 
         // Transaction ID
         // ie. CPK-191178870
