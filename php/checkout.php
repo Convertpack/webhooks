@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
             $product = $products[$products_keys[$i]];
 
             $product_is_upsell = $product['is_upsell'];
-            $product_is_orderbump = $product['is_orderbump'];
+            $product_is_order_bump = $product['is_order_bump'];
             $product_quantity = $product['quantity'];
             $product_name = $product['name'];
             $product_type = $product['type'];
@@ -261,9 +261,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         // ie: [ 'ref' => 'email' ]
         $transaction_origin_params = $convertpack_data['checkout']['origin']['params'];
 
-        // Checkout style
-        // ie. in_page
-        $transaction_origin_checkout_style = $convertpack_data['checkout']['style'];
+        // Checkout mode
+        // 'modal', 'inline' or 'self'
+        $transaction_origin_checkout_style = $convertpack_data['checkout']['mode'];
 
         /**
          * Tracking codes
