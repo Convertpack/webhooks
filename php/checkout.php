@@ -2,7 +2,8 @@
 
 /**
  *
- * Example of capturing Checkout data
+ * Example
+ * Capturing Checkout data
  * from Convertpack Webhook POST
  *
  * convertpack.io
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         /**
          * Webhook info
          */
-        // What trigged the webhook
+        // What triggered the webhook
         // ie. transaction_rejected
         $webhook_event = $convertpack_data['event'];
 
@@ -73,19 +74,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
          * - international format (address 1 + address 2)
          * - destination format (most common format in user country)
          *
-         * By default we use `internacional_format`
+         * By default we use `international_format`
          * if you want to change to destination format, you need to
          * create your own variables. Below we show an example of
          * the format used in Brazil.
          */
 
-        // Can be: `internacional_format` or `destination_format`
-        $customer_address_format = 'internacional_format';
+        // Can be: `international_format` or `destination_format`
+        $customer_address_format = 'international_format';
 
-        if ($customer_address_format === 'internacional_format') :
-            // Model for `internacional_format` (default)
+        if ($customer_address_format === 'international_format') :
+            // Model for `international_format` (default)
 
-            $address_data = $convertpack_data['customer']['address']['internacional_format'];
+            $address_data = $convertpack_data['customer']['address']['international_format'];
 
             $customer_address_1 = $address_data['address_1'];           // ie. 2815 Directors Row
             $customer_address_2 = $address_data['address_2'];           // ie. Ste 100 Office 546
@@ -228,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
         $transaction_total_amount = $convertpack_data['transaction']['total_amount'];
 
         /**
-         * Boleto bancario data
+         * Boleto bancário data
          * (PAYMENT METHOD ONLY FOR BRAZIL)
          */
         // Boleto URL
