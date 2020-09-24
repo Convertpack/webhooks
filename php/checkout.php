@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
         // Gateway account used
         // ie. your-email@domain.com
-        $transaction_gateway_name = $convertpack_data['transaction']['gateway']['account'];
+        $transaction_gateway_account = $convertpack_data['transaction']['gateway']['account'];
 
         /**
          * Products
